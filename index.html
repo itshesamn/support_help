@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="fa" dir="rtl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>آمادگی قبل از شروع پشتیبانی - MR_PCfix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Vazirmatn', sans-serif;
+    }
+    
+    .fade-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.3);
+    }
+    
+    .subtle-glow {
+      text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    }
+    
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+      top: 10%;
+      right: -10%;
+      animation-delay: 0s;
+    }
+    
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: -5%;
+      animation-delay: -7s;
+    }
+    
+    .orb-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+      bottom: 10%;
+      right: 20%;
+      animation-delay: -14s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(30px, -30px) scale(1.05);
+      }
+      50% {
+        transform: translate(-20px, 20px) scale(0.95);
+      }
+      75% {
+        transform: translate(-30px, -20px) scale(1.02);
+      }
+    }
+    
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 30s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 60px 60px;
+      }
+    }
+    
+    .step-card {
+      background: linear-gradient(135deg, rgba(30, 30, 35, 0.8) 0%, rgba(20, 20, 25, 0.9) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+    
+    .step-card:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .step-number {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+    
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+    }
+    
+    .brand-glow {
+      text-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 80px rgba(139, 92, 246, 0.4), 0 0 120px rgba(139, 92, 246, 0.2);
+    }
+    
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(139, 92, 246, 0.5);
+      border-radius: 50%;
+      animation: particleFloat 15s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes particleFloat {
+      0%, 100% {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-[#0a0a0c] text-gray-100 overflow-x-hidden">
+  <div class="app-wrapper w-full h-full overflow-auto relative"><!-- Background Effects -->
+   <div class="fixed inset-0 grid-bg pointer-events-none"></div>
+   <div class="floating-orb orb-1"></div>
+   <div class="floating-orb orb-2"></div>
+   <div class="floating-orb orb-3"></div><!-- Particles -->
+   <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+   <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+   <div class="particle" style="left: 35%; animation-delay: 4s;"></div>
+   <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+   <div class="particle" style="left: 65%; animation-delay: 8s;"></div>
+   <div class="particle" style="left: 80%; animation-delay: 10s;"></div>
+   <div class="particle" style="left: 90%; animation-delay: 12s;"></div><!-- Main Content -->
+   <main class="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-24"><!-- Hero Title -->
+    <section class="fade-section text-center mb-16 md:mb-24">
+     <h1 id="main-title" class="text-3xl md:text-5xl lg:text-6xl font-black text-white glow-text leading-relaxed mb-8">آمادگی قبل از شروع پشتیبانی</h1>
+     <div class="divider-line w-48 mx-auto"></div>
+    </section><!-- Introduction -->
+    <section class="fade-section mb-16 md:mb-20">
+     <p class="text-lg md:text-xl text-gray-300 leading-loose text-center max-w-3xl mx-auto">قبل از شروع پشتیبانی لطفاً این موارد را انجام دهید تا روند کار سریع‌تر و بدون مشکل انجام شود.</p>
+    </section><!-- Steps -->
+    <section class="space-y-6 md:space-y-8 mb-20 md:mb-28"><!-- Step 1 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۱</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-3 subtle-glow">دستگاه خود را یک‌بار خاموش و دوباره روشن کنید.</h3>
+        <p class="text-gray-400 leading-relaxed">این کار بسیاری از خطاهای موقتی را برطرف می‌کند.</p>
+       </div>
+      </div>
+     </div><!-- Step 2 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۲</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-3 subtle-glow">از اتصال پایدار اینترنت مطمئن شوید.</h3>
+        <p class="text-gray-400 leading-relaxed">در صورت استفاده از وای‌فای، نزدیک مودم باشید تا ارتباط قطع نشود.</p>
+       </div>
+      </div>
+     </div><!-- Step 3 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۳</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-3 subtle-glow">برنامه «راست‌دسک» را نصب کنید.</h3>
+        <p class="text-gray-400 leading-relaxed">در صورت نیاز، راهنمای نصب مرحله‌به‌مرحله برای شما ارسال خواهد شد.</p>
+       </div>
+      </div>
+     </div><!-- Step 4 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۴</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white subtle-glow">در کامپیوتر، اگر پیامی برای اجازه دسترسی نمایش داده شد، آن را تأیید کنید.</h3>
+       </div>
+      </div>
+     </div><!-- Step 5 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۵</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white subtle-glow">در گوشی اندرویدی، هنگام اتصال، گزینه‌های «اجازه دادن» را انتخاب کنید تا امکان مشاهده صفحه فراهم شود.</h3>
+       </div>
+      </div>
+     </div><!-- Step 6 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۶</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white subtle-glow">در صورت داشتن اطلاعات مهم، از آن‌ها نسخه پشتیبان تهیه کنید.</h3>
+       </div>
+      </div>
+     </div><!-- Step 7 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۷</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white subtle-glow">رمز دستگاه خود را در اختیار داشته باشید، زیرا ممکن است در طول پشتیبانی نیاز باشد.</h3>
+       </div>
+      </div>
+     </div><!-- Step 8 -->
+     <div class="fade-section step-card rounded-2xl p-6 md:p-8">
+      <div class="flex items-start gap-4 md:gap-6">
+       <div class="step-number w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-xl md:text-2xl font-bold text-violet-400">۸</span>
+       </div>
+       <div class="flex-1">
+        <h3 class="text-lg md:text-xl font-bold text-white subtle-glow">برنامه‌های غیرضروری را ببندید تا دستگاه روان‌تر کار کند.</h3>
+       </div>
+      </div>
+     </div>
+    </section><!-- Closing Section -->
+    <section class="fade-section text-center mb-16 md:mb-20">
+     <div class="divider-line w-32 mx-auto mb-12"></div>
+     <p class="text-lg md:text-xl text-gray-300 leading-loose mb-4">هدف از این اقدامات، شروع یک پشتیبانی دقیق، منظم و حرفه‌ای است.</p>
+     <p class="text-lg md:text-xl text-gray-300 leading-loose">هرچه آمادگی اولیه کامل‌تر باشد، نتیجه نهایی بهتر خواهد بود.</p>
+    </section><!-- Brand Footer -->
+    <section class="fade-section text-center pt-8 pb-12">
+     <div class="divider-line w-24 mx-auto mb-12"></div>
+     <h2 id="brand-name" class="text-3xl md:text-4xl lg:text-5xl font-black text-violet-400 brand-glow mb-6">MR_PCfix</h2>
+     <p id="brand-tagline" class="text-lg md:text-xl text-gray-400 font-medium">پشتیبانی دقیق، با حوصله و مسئولانه</p>
+    </section>
+   </main>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: 'آمادگی قبل از شروع پشتیبانی',
+      brand_name: 'MR_PCfix',
+      brand_tagline: 'پشتیبانی دقیق، با حوصله و مسئولانه',
+      primary_color: '#8b5cf6',
+      background_color: '#0a0a0c',
+      text_color: '#f3f4f6',
+      card_color: '#1e1e23',
+      secondary_text_color: '#9ca3af'
+    };
+    
+    // Scroll Animation Observer
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      document.querySelectorAll('.fade-section').forEach(section => {
+        observer.observe(section);
+      });
+    }
+    
+    async function onConfigChange(config) {
+      const mainTitle = document.getElementById('main-title');
+      const brandName = document.getElementById('brand-name');
+      const brandTagline = document.getElementById('brand-tagline');
+      
+      if (mainTitle) {
+        mainTitle.textContent = config.main_title || defaultConfig.main_title;
+      }
+      if (brandName) {
+        brandName.textContent = config.brand_name || defaultConfig.brand_name;
+      }
+      if (brandTagline) {
+        brandTagline.textContent = config.brand_tagline || defaultConfig.brand_tagline;
+      }
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || 'Vazirmatn',
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || 16,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['main_title', config.main_title || defaultConfig.main_title],
+        ['brand_name', config.brand_name || defaultConfig.brand_name],
+        ['brand_tagline', config.brand_tagline || defaultConfig.brand_tagline]
+      ]);
+    }
+    
+    // Initialize
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+    
+    // Start scroll animations
+    initScrollAnimations();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc6c2d3433854eb',t:'MTc3MDg0MzQ3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
